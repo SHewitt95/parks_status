@@ -24,6 +24,10 @@ export interface Props {
   data: Item[];
 }
 
+export interface ParkPageProps {
+  parkData: FormattedItem;
+}
+
 export interface Status {
   internal_link: string;
   description: string;
