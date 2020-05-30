@@ -26,6 +26,7 @@ export interface Props {
 
 export interface ParkPageProps {
   parkData: FormattedItem;
+  err: any;
 }
 
 export interface Status {

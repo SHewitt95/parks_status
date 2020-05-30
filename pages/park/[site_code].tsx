@@ -1,6 +1,7 @@
 import axios from "axios";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
+import ErrorPage from "next/error";
 import { formatData } from "../../helpers";
 import { FormattedItem, Status, ParkPageProps } from "../../types";
 
@@ -11,7 +12,18 @@ const CATEGORIES: { [index: string]: string } = {
   4: "Information",
 };
 
-export default ({ parkData }: ParkPageProps) => {
+const getUrl = (url: string): string => {
+  const root = "https://www.nps.gov";
+  if (url.includes(root)) {
+    return url;
+  } else {
+    return `${root}${url}`;
+  }
+};
+
+export default ({ parkData, err }: ParkPageProps) => {
+  if (err) return <ErrorPage statusCode={err.status} />;
+
   const { park_name, state_name, statuses }: FormattedItem = parkData;
   return (
     <>
@@ -29,11 +41,13 @@ export default ({ parkData }: ParkPageProps) => {
             <ul>
               {statusArray.map((status: Status, idx2: number) => (
                 <li key={idx2}>
-                  <h4>{status.title}</h4>
-                  <p>{status.description}</p>
-                  <a target="_blank" href={status.internal_link}>
-                    More Information
-                  </a>
+                  {status.title && <h4>{status.title}</h4>}
+                  {status.description && <p>{status.description}</p>}
+                  {status.internal_link && (
+                    <a target="_blank" href={getUrl(status.internal_link)}>
+                      More Information
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -51,10 +65,12 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   // @ts-ignore
   const { site_code } = params;
 
-  const parkData = formatData(data.data)[site_code];
+  const parkData = formatData(data.data)[site_code] || null;
+  const err = parkData ? null : { status: 404 };
   return {
     props: {
       parkData,
+      err,
     },
   };
 };
