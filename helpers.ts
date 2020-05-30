@@ -1,48 +1,35 @@
-import { Item, FormattedData } from "./types";
+import { Item, FormattedData, Status, Statuses, FormattedItem } from "./types";
 
 export const formatData = (data: Item[]): FormattedData => {
   const formattedData: FormattedData = {};
-  const getStatus = (item: Item) => {
-    const {
-      category_id,
-      category,
-      internal_link,
-      description,
-      end_date,
-      start_date,
-      title,
-      unique_id,
-    } = item;
-    return {
-      category_id,
-      category,
-      internal_link,
-      description,
-      end_date,
-      start_date,
-      title,
-      unique_id,
-    };
+
+  const getStatus = (item: Item): Status => {
+    const { title, description, internal_link } = item;
+    return { internal_link, title, description };
   };
 
+  const getStatusesObject = (): Statuses => ({ 1: [], 2: [], 3: [], 4: [] });
+
   data.forEach((item: Item) => {
-    const datum = formattedData[item.site_code];
-    // Check if item's site_code is in formattedData
+    const datum: FormattedItem = formattedData[item.site_code];
     if (datum) {
-      // If so, store the item's status attributes in object
-      // append to formattedItem's statuses array
-      datum.statuses.push(getStatus(item));
+      datum.statuses[item.category_id].push(getStatus(item));
     } else {
-      // If item's site_code is NOT in formattedData
-      // create object with site_code's attributes
-      const { park_name, state_code, state_name, site_code } = item;
-      const site = {
+      const {
         park_name,
         state_code,
         state_name,
-        statuses: [getStatus(item)],
+        site_code,
+        category_id,
+      } = item;
+      const site: FormattedItem = {
+        park_name,
+        state_code,
+        state_name,
+        statuses: getStatusesObject(),
       };
-      // add object to formattedData, with site_code as the key
+
+      site.statuses[category_id].push(getStatus(item));
       formattedData[site_code] = site;
     }
   });
