@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Props, Item, FormattedData } from "../types";
+import { Props, Item, FormattedData, Status } from "../types";
 
 const formatData = (data: Item[]): FormattedData => {
   const formattedData: FormattedData = {};
@@ -51,21 +51,39 @@ const formatData = (data: Item[]): FormattedData => {
   return formattedData;
 };
 
-export default (props: Props) => {
-  console.log({ data: Object.entries(formatData(props.data)) });
-  // console.log({ datum2: props.data[1] });
-  // console.log({ data: props.data });
-
-  return (
-    <ul>
-      {Object.entries(formatData(props.data)).map(
-        ([, formattedData], idx: number) => (
-          <li key={idx}>{formattedData.park_name}</li>
-        )
-      )}
-    </ul>
-  );
-};
+export default (props: Props) => (
+  <main>
+    {Object.entries(formatData(props.data)).map(
+      ([, formattedData], idx: number) => (
+        <div key={idx}>
+          <h2>
+            {formattedData.park_name} - {formattedData.state_name}
+          </h2>
+          <table>
+            <thead>
+              <td>{"Category"}</td>
+              <td>{"Title"}</td>
+              <td>{"Description"}</td>
+              <td></td>
+            </thead>
+            <tbody>
+              {formattedData.statuses.map((status: Status, idx: number) => (
+                <tr key={idx}>
+                  <td>{status.category}</td>
+                  <td>{status.title}</td>
+                  <td>{status.description}</td>
+                  <td>
+                    <a href={status.internal_link}>More information</a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )
+    )}
+  </main>
+);
 
 const endpoint: string = "https://www.nps.gov/nps-alerts.json";
 
