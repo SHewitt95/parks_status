@@ -5,8 +5,10 @@ import { Table } from "../components";
 
 export default (props: Props) => (
   <main>
-    {Object.entries(formatData(props.data)).map(([, formattedData]) => (
-      <Table data={formattedData} />
+    {Object.entries(formatData(props.data)).map(([, formattedData], idx) => (
+      <div key={idx}>
+        <Table data={formattedData} />
+      </div>
     ))}
   </main>
 );

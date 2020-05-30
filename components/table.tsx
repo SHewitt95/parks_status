@@ -13,10 +13,12 @@ export default ({ data }: FormattedData) => (
 
     <table>
       <thead>
-        <td>Dangers</td>
-        <td>Closures</td>
-        <td>Cautions</td>
-        <td>Information</td>
+        <tr>
+          <th>Dangers</th>
+          <th>Closures</th>
+          <th>Cautions</th>
+          <th>Information</th>
+        </tr>
       </thead>
       <tbody>
         <tr>
