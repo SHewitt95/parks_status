@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Props, Item, FormattedData, Status } from "../types";
+import { Props, Status } from "../types";
 import { formatData } from "../helpers";
 
 export default (props: Props) => (
@@ -12,22 +12,18 @@ export default (props: Props) => (
           </h2>
           <table>
             <thead>
-              <td>{"Category"}</td>
-              <td>{"Title"}</td>
-              <td>{"Description"}</td>
-              <td></td>
+              <td>Dangers</td>
+              <td>Closures</td>
+              <td>Cautions</td>
+              <td>Information</td>
             </thead>
             <tbody>
-              {formattedData.statuses.map((status: Status, idx: number) => (
-                <tr key={idx}>
-                  <td>{status.category}</td>
-                  <td>{status.title}</td>
-                  <td>{status.description}</td>
-                  <td>
-                    <a href={status.internal_link}>More information</a>
-                  </td>
-                </tr>
-              ))}
+              <tr>
+                {Object.entries(formattedData.statuses).map((entry, idx) => {
+                  const [, statusArray] = entry;
+                  return <td key={idx}>{statusArray.length}</td>;
+                })}
+              </tr>
             </tbody>
           </table>
         </div>
