@@ -1,34 +1,13 @@
 import axios from "axios";
-import { Props, Status } from "../types";
+import { Props } from "../types";
 import { formatData } from "../helpers";
+import { Table } from "../components";
 
 export default (props: Props) => (
   <main>
-    {Object.entries(formatData(props.data)).map(
-      ([, formattedData], idx: number) => (
-        <div key={idx}>
-          <h2>
-            {formattedData.park_name} - {formattedData.state_name}
-          </h2>
-          <table>
-            <thead>
-              <td>Dangers</td>
-              <td>Closures</td>
-              <td>Cautions</td>
-              <td>Information</td>
-            </thead>
-            <tbody>
-              <tr>
-                {Object.entries(formattedData.statuses).map((entry, idx) => {
-                  const [, statusArray] = entry;
-                  return <td key={idx}>{statusArray.length}</td>;
-                })}
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      )
-    )}
+    {Object.entries(formatData(props.data)).map(([, formattedData]) => (
+      <Table data={formattedData} />
+    ))}
   </main>
 );
 
