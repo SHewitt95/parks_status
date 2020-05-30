@@ -1,10 +1,16 @@
+import Link from "next/link";
 import { FormattedData } from "../types";
 
 export default ({ data }: FormattedData) => (
   <>
-    <h2>
-      {data.park_name} - {data.state_name}
-    </h2>
+    <Link href={`/park/[site_code]`} as={`/park/${data.site_code}`}>
+      <a>
+        <h2>
+          {data.park_name} - {data.state_name}
+        </h2>
+      </a>
+    </Link>
+
     <table>
       <thead>
         <td>Dangers</td>

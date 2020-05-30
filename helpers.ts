@@ -26,6 +26,7 @@ export const formatData = (data: Item[]): FormattedData => {
         park_name,
         state_code,
         state_name,
+        site_code,
         statuses: getStatusesObject(),
       };
 

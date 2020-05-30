@@ -38,6 +38,7 @@ export interface FormattedItem {
   park_name: string;
   state_name: string;
   state_code: string[];
+  site_code: string;
   statuses: Statuses;
 }
 
