@@ -1,17 +1,17 @@
 import Link from "next/link";
+import styles from "./table.module.scss";
 import { FormattedData } from "../types";
 
 export default ({ data }: FormattedData) => (
   <>
     <Link href={`/park/[site_code]`} as={`/park/${data.site_code}`}>
       <a>
-        <h2>
-          {data.park_name} - {data.state_name}
-        </h2>
+        <h2 className={styles.heading}>{data.park_name}</h2>
+        <p className={styles.subheading}>{data.state_name}</p>
       </a>
     </Link>
 
-    <table>
+    <table className={styles.table}>
       <thead>
         <tr>
           <th>Dangers</th>
