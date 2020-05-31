@@ -1,4 +1,3 @@
-import ErrorPage from "next/error";
 import Link from "next/link";
 import styles from "./parkPage.module.scss";
 import { FormattedItem, Status, ParkPageProps } from "../types";
@@ -19,9 +18,7 @@ const getUrl = (url: string): string => {
   }
 };
 
-export default ({ parkData, err }: ParkPageProps) => {
-  if (err) return <ErrorPage statusCode={err.status} />;
-
+export default ({ parkData }: ParkPageProps) => {
   const {
     park_name,
     state_name,
