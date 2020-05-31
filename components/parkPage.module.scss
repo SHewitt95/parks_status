@@ -10,29 +10,30 @@
   color: rgba(0, 0, 0, 0.5);
 }
 
-.list {
-  margin-bottom: 2rem;
-}
-
-.listItem {
-  margin-bottom: 1rem;
-}
-
 .category {
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   margin-bottom: 0.5rem;
   font-weight: bold;
 }
 
-.title {
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
+.list {
+  margin-bottom: 2.5rem;
+  list-style-type: none;
 
-.desc {
-  margin-bottom: 0.5rem;
-}
+  li {
+    margin-bottom: 1.5rem;
 
-.link:hover {
-  text-decoration: underline;
+    .title {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .desc {
+      margin-bottom: 0.5rem;
+    }
+
+    .link:hover {
+      text-decoration: underline;
+    }
+  }
 }
