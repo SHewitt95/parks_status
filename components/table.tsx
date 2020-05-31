@@ -9,6 +9,7 @@ export default ({ data }: FormattedData) => (
         <h2
           className={styles.heading}
           dangerouslySetInnerHTML={{ __html: data.park_name }}
+          id={data.site_code}
         />
         <p className={styles.subheading}>{data.state_name}</p>
       </a>
