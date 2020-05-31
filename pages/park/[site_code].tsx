@@ -4,6 +4,7 @@ import Link from "next/link";
 import ErrorPage from "next/error";
 import { formatData } from "../../helpers";
 import { FormattedItem, Status, ParkPageProps } from "../../types";
+import { Layout } from "../../components";
 
 const CATEGORIES: { [index: string]: string } = {
   1: "Danger",
@@ -26,7 +27,7 @@ export default ({ parkData, err }: ParkPageProps) => {
 
   const { park_name, state_name, statuses }: FormattedItem = parkData;
   return (
-    <>
+    <Layout>
       <Link href="/">
         <a>Go Back Home...</a>
       </Link>
@@ -54,7 +55,7 @@ export default ({ parkData, err }: ParkPageProps) => {
           </div>
         );
       })}
-    </>
+    </Layout>
   );
 };
 

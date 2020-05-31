@@ -1,16 +1,16 @@
 import axios from "axios";
 import { Props } from "../types";
 import { formatData } from "../helpers";
-import { Table } from "../components";
+import { Table, Layout } from "../components";
 
 export default (props: Props) => (
-  <main>
+  <Layout>
     {Object.entries(formatData(props.data)).map(([, formattedData], idx) => (
       <div key={idx}>
         <Table data={formattedData} />
       </div>
     ))}
-  </main>
+  </Layout>
 );
 
 const endpoint: string = "https://www.nps.gov/nps-alerts.json";
