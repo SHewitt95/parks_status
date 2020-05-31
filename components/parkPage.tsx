@@ -48,7 +48,10 @@ export default ({ parkData }: ParkPageProps) => {
                     <h4 className={styles.title}>{status.title}</h4>
                   )}
                   {status.description && (
-                    <p className={styles.desc}>{status.description}</p>
+                    <p
+                      className={styles.desc}
+                      dangerouslySetInnerHTML={{ __html: status.description }}
+                    />
                   )}
                   {status.internal_link && (
                     <a
