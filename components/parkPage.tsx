@@ -28,7 +28,7 @@ export default ({ parkData, err }: ParkPageProps) => {
         <a>Go Back Home...</a>
       </Link>
 
-      <h2>{park_name}</h2>
+      <h2 dangerouslySetInnerHTML={{ __html: park_name }} />
       <p>State: {state_name}</p>
       {Object.entries(statuses).map(([categoryID, statusArray], idx) => {
         if (statusArray.length === 0) return null;
