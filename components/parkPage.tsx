@@ -11,7 +11,8 @@ const CATEGORIES: { [index: string]: string } = {
 
 const getUrl = (url: string): string => {
   const root = "https://www.nps.gov";
-  if (url.includes(root)) {
+  const http = "http";
+  if (url.includes(http)) {
     return url;
   } else {
     return `${root}${url}`;
