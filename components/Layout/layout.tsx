@@ -8,7 +8,7 @@ export default (props: { children: React.ReactNode }) => (
       <title>U.S. National Park - Park Status</title>
     </Head>
     <main className={styles.container}>{props.children}</main>
-    <footer>
+    <footer className={styles.container}>
       <p>
         <a target="_blank" href="https://twitter.com/Sherman_Hewitt">
           Created by Sherman Hewitt
