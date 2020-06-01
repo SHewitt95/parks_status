@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "./parkPage.module.scss";
-import { FormattedItem, Status, ParkPageProps } from "../types";
+import { FormattedItem, Status, ParkPageProps } from "../../types";
 
 const CATEGORIES: { [index: string]: string } = {
   1: "Danger",

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "./table.module.scss";
-import { FormattedData } from "../types";
+import { FormattedData } from "../../types";
 
 export default ({ data }: FormattedData) => (
   <>

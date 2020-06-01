@@ -9,7 +9,11 @@ export default (props: { children: React.ReactNode }) => (
     </Head>
     <main className={styles.container}>{props.children}</main>
     <footer>
-      <p>Created by Sherman Hewitt</p>
+      <p>
+        <a target="_blank" href="https://twitter.com/Sherman_Hewitt">
+          Created by Sherman Hewitt
+        </a>
+      </p>
       <p>Data comes from the U.S. National Park Service</p>
     </footer>
   </>
