@@ -22,12 +22,31 @@ export default (props: Props) => {
 
   return (
     <>
-      <Search dispatch={dispatch} searchQuery={state.searchQuery} />
-      {Object.entries(formatData(props.data)).map(([, formattedData], idx) => (
-        <div key={idx}>
-          <Table data={formattedData} />
-        </div>
-      ))}
+      <Search
+        dispatch={dispatch}
+        searchQuery={state.searchQuery}
+        loading={state.loading}
+      />
+      {Object.entries(formatData(props.data))
+        .filter(([, parkInfo]) => {
+          const name = parkInfo.park_name.toLowerCase();
+          const lowerQ = state.searchQuery.toLowerCase();
+          let valid = true;
+
+          for (let i = 0; i < state.searchQuery.length; i++) {
+            if (name[i] !== lowerQ[i]) {
+              valid = false;
+              break;
+            }
+          }
+
+          return valid;
+        })
+        .map(([, formattedData], idx) => (
+          <div key={idx}>
+            <Table data={formattedData} />
+          </div>
+        ))}
     </>
   );
 };
