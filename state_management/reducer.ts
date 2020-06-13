@@ -7,6 +7,13 @@ export default (state: Types.State, action: Types.Action) => {
         ...state,
         searchQuery: action.payload.query,
       };
+
+    case Actions.INITIALIZE_STATE:
+      return {
+        ...state,
+        data: action.payload.state,
+      };
+
     default:
       return state;
   }

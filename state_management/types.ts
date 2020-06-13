@@ -1,3 +1,5 @@
+import { FormattedData } from "../types";
+
 export interface Action {
   type: string;
   payload: any;
@@ -5,4 +7,5 @@ export interface Action {
 
 export interface State {
   searchQuery: string;
+  data: undefined | FormattedData;
 }
