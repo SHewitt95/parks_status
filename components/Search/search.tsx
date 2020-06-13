@@ -1,13 +1,14 @@
 import { SearchProps } from "./types";
 import { Actions } from "../../state_management";
 
-export default ({ searchQuery, dispatch }: SearchProps) => {
+export default ({ searchQuery, dispatch, loading }: SearchProps) => {
   console.log({ searchQuery });
   return (
     <input
       type="search"
       name=""
       id=""
+      disabled={loading}
       value={searchQuery}
       onChange={(e) => {
         dispatch({

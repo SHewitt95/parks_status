@@ -8,4 +8,5 @@ export interface Action {
 export interface State {
   searchQuery: string;
   data: undefined | FormattedData;
+  loading: boolean;
 }

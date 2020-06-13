@@ -11,6 +11,7 @@ export default (state: Types.State, action: Types.Action) => {
     case Actions.INITIALIZE_STATE:
       return {
         ...state,
+        loading: false,
         data: action.payload.state,
       };
 
