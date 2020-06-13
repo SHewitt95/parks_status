@@ -8,7 +8,7 @@ import { Reducer, State, Actions } from "../state_management";
 const endpoint: string = "https://www.nps.gov/nps-alerts.json";
 
 export default (props: Props) => {
-  const [, dispatch] = useReducer(Reducer, State);
+  const [state, dispatch] = useReducer(Reducer, State);
 
   useEffect(() => {
     (async function getData() {
@@ -22,7 +22,7 @@ export default (props: Props) => {
 
   return (
     <>
-      <Search />
+      <Search dispatch={dispatch} searchQuery={state.searchQuery} />
       {Object.entries(formatData(props.data)).map(([, formattedData], idx) => (
         <div key={idx}>
           <Table data={formattedData} />
