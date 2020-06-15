@@ -1,7 +1,7 @@
 import { useEffect, useReducer } from "react";
 import axios from "axios";
 import { Props } from "../types";
-import { formatData } from "../helpers";
+import { formatData, useData } from "../helpers";
 import { Table, Search } from "../components";
 import { Reducer, State, Actions } from "../state_management";
 
@@ -9,16 +9,7 @@ const endpoint: string = "https://www.nps.gov/nps-alerts.json";
 
 export default (props: Props) => {
   const [state, dispatch] = useReducer(Reducer, State);
-
-  useEffect(() => {
-    (async function getData() {
-      const data = await axios.get(endpoint);
-      dispatch({
-        type: Actions.INITIALIZE_STATE,
-        payload: { data: formatData(data.data) },
-      });
-    })();
-  }, []);
+  useData(dispatch);
 
   return (
     <>
