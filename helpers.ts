@@ -41,20 +41,14 @@ export const formatData = (data: Item[]): FormattedData => {
   return formattedData;
 };
 
-export function useData(dispatch: Function) {
-  const [parkData, setParkData] = useState();
+export function useData() {
+  const [parkData, setParkData] = useState({});
   const endpoint: string = "https://www.nps.gov/nps-alerts.json";
 
   useEffect(() => {
-    (async function getData() {
+    (async function () {
       const data = await axios.get(endpoint);
-      const formatted = formatData(data.data);
-
-      setParkData(formatted);
-      dispatch({
-        type: Actions.INITIALIZE_STATE,
-        payload: { data: formatted },
-      });
+      setParkData(formatData(data.data));
     })();
   }, []);
 
