@@ -1,9 +1,9 @@
-import { useEffect, useReducer } from "react";
+import { useReducer } from "react";
 import axios from "axios";
 import { Props } from "../types";
 import { formatData, useData } from "../helpers";
 import { Table, Search } from "../components";
-import { Reducer, State, Actions } from "../state_management";
+import { Reducer, State } from "../state_management";
 
 const endpoint: string = "https://www.nps.gov/nps-alerts.json";
 
