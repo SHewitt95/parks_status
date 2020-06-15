@@ -16,7 +16,7 @@ export default (props: Props) => {
       type: Actions.INITIALIZE_STATE,
       payload: { data },
     });
-  }, []);
+  }, [data]);
 
   return (
     <>
